@@ -1,0 +1,12 @@
+.discription {
+  width: 77%;
+  height: 260px;
+  background-color: black;
+  color: white;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+  font-size: 24px;
+  margin-top: 120px;
+  margin-bottom: 45px;
+}

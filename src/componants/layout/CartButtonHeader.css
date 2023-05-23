@@ -1,0 +1,16 @@
+.cart-button {
+  position: fixed;
+  top: 23px;
+  right: 26px;
+  padding: 15px 62px;
+}
+.cart-span {
+  cursor: pointer;
+  background-color: #8a2b06;
+  padding: 7px 12px;
+  border-radius: 132px;
+  margin-left: 1rem;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
