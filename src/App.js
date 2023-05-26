@@ -37,32 +37,22 @@ const DummyDefaultFoods = [
 
 function App() {
   const [foodData, setFoodData] = useState(DummyDefaultFoods);
+
   const updateFoodDataHandler = (id, count) => {
-    console.log(id, count);
-    const newArr = [];
-    for (let i = 0; i < foodData.length; i++) {
-      const arrItem = { ...foodData[i] }; //we do this copy because we do not want to change our old(basic) data.
-      if (arrItem.id === id) {
-        arrItem.count += Number(count);
-        newArr.push(arrItem);
+    const result = foodData.map((arrItem) => {
+      const newObj = { ...arrItem }; // copy object because object are passed by refrence and will change the original object if we modify it here
+      if (newObj.id === id) {
+        newObj.count += Number(count);
+        return newObj;
       } else {
-        newArr.push(arrItem);
+        return newObj;
       }
-    }
-    //with every usestate we must set a new thing(arr,obj,bollean)
-    setFoodData(newArr);
+    });
+    //   //with every usestate we must set a new thing(arr,obj,bollean)
+    setFoodData(result);
   };
-  console.log(foodData);
-  // const updateFoodDataHandler = foodData.map((arrItem, id, count) => {
-  //   const newObj = { ...arrItem[0] };
-  //   if (arrItem.id === id) {
-  //     arrItem.count += Number(count);
-  //     newObj.push(arrItem);
-  //   } else {
-  //     newObj.push(arrItem);
-  //   }
-  //   return setFoodData(newObj);
-  // });
+  // console.log(foodData);
+
   const [isOpen, setIsOpen] = useState(false);
   const setCloseModalHandler = () => {
     setIsOpen(false);
@@ -75,8 +65,14 @@ function App() {
       <Header foodData={foodData} onOpen={setOpenModalHandler} />
       <WebDiscription />
       <MealsCard foodData={foodData} onAddFood={updateFoodDataHandler} />
-      // for showing the cart or not
-      {isOpen && <CartItems data={foodData} onClose={setCloseModalHandler} />}
+      {/* {for showing the cart or not} */}
+      {isOpen && (
+        <CartItems
+          foodData={foodData}
+          onClose={setCloseModalHandler}
+          updateFoodDataHandler={updateFoodDataHandler}
+        />
+      )}
     </div>
   );
 }

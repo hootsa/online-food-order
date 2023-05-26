@@ -1,33 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CartItems.css";
 import CartTotal from "./CartTotal";
-
+import CartItem from "./CartItem";
 const CartItems = (props) => {
   // for showing the cart or not. when we return null it's like false and nothing is render
   // if (props.onOpen) {
   //   return null;
   // }
+
+  const filteredData = props.foodData.filter((foodObj) => {
+    return Number(foodObj.count) > 0;
+    // OR
+    // if (Number(foodObj.count) > 0) {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+  });
+
   return (
     // <div className = {props.isopen ? "card-cart":"empty"}
-    <div className={"card-cart"}>
-      {props.data.map((food) => {
-        return (
-          <div className="cart-item" key={food.id}>
-            <div>
-              <h3>{food.name}</h3>
-              <div className="dis-cart">
-                <span className="price-cart"> {food.price}</span>
-                <span className="amount-cart">{food.count}</span>
-              </div>
-            </div>
-            <div>
-              <button className="button-cart">-</button>
-              <button className="button-cart">+</button>
-            </div>
-          </div>
-        );
-      })}
-      <CartTotal onClose={props.onClose} />
+    <div className={"card-back"}>
+      <div className={"card-cart"}>
+        {filteredData.map((food) => {
+          return (
+            <CartItem
+              key={food.id}
+              food={food}
+              updateFoodDataHandler={props.updateFoodDataHandler}
+            />
+          );
+        })}
+        <CartTotal onClose={props.onClose} foodData={filteredData} />
+      </div>
     </div>
   );
 };

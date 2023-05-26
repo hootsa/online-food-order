@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./CartButtonHeader.css";
 
 const CartButtonHeader = (props) => {
@@ -12,19 +12,6 @@ const CartButtonHeader = (props) => {
     return sum;
   };
   const total = totalCounts();
-
-  // const showCartItems = props.foodData.filter((mealObj) => {
-  //   const newData = [{}];
-
-  //   const mealItem = props.foodData[0];
-  //   if (Number(mealItem.count) > 0) {
-  //     newData.push(mealItem);
-  //   } else {
-  //     return;
-  //   }
-  //   // console.log(mealItem.count, "ggg", newData);
-  //   return newData;
-  // });
 
   return (
     <button className="cart-button" onClick={props.onOpen}>
