@@ -45,8 +45,9 @@ function App() {
     const newCartData = cartData.map((arrItem) => {
       const newArr = [...cartData];
       if (found >= 0) {
+        newArr.count += Number(mealsAmount);
       } else {
-        setCartData([...cartData, { id: id, count: mealsAmount }]);
+        setCartData({ newArr, id: id, count: mealsAmount });
       }
     });
   };
