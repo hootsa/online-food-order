@@ -43,16 +43,18 @@ function App() {
       return id === arrItem.id; //
     });
     const newCartData = cartData.map((arrItem) => {
-      const newArr = [...cartData];
+      const newArr = [...arrItem];
+
       if (found >= 0) {
         newArr.count += Number(mealsAmount);
+        return newArr;
       } else {
-        setCartData({ newArr, id: id, count: mealsAmount });
+        return { ...arrItem, id: id, count: mealsAmount };
       }
     });
+    console.log(newCartData, found, "kkkk");
+    setCartData(newCartData);
   };
-
-  console.log(cartData, "kkkk");
 
   const [isOpen, setIsOpen] = useState(false);
   const setCloseModalHandler = () => {
