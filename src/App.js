@@ -43,7 +43,7 @@ function App() {
       return id === arrItem.id;
     });
     if (found >= 0) {
-      setCartData([{ id: id, count: (mealsAmount += mealsAmount) }]);
+      setCartData([]);
     } else {
       setCartData([...cartData, { id: id, count: mealsAmount }]);
     }
