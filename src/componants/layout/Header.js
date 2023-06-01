@@ -7,7 +7,7 @@ const Header = (props) => {
     <header className="header">
       <h2 className="title">ReactMeals</h2>
       <CartButtonHeader
-        foodData={props.foodData}
+        cartData={props.cartData}
         onOpen={props.onOpen}
         onClose={props.onClose}
       ></CartButtonHeader>

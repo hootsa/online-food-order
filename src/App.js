@@ -10,48 +10,46 @@ const DummyDefaultFoods = [
     dis: "Finest Fish and Vegies",
     price: 22.99,
     id: Math.random().toString(),
-    count: 0,
   },
   {
     name: "Schinitzel",
     dis: " A German Speciallity!",
     price: 16.99,
     id: Math.random().toString(),
-    count: 0,
   },
   {
     name: "BBQ Bergur",
     dis: "American, raw, meaty",
     price: 12.99,
     id: Math.random().toString(),
-    count: 0,
   },
   {
     name: "Green Bowl",
     dis: "Healthy and Green",
     price: 18.99,
     id: Math.random().toString(),
-    count: 0,
   },
+];
+const defaultCart = [
+  // { id: DummyDefaultFoods[0].id, count: 7 },
 ];
 
 function App() {
   const [foodData, setFoodData] = useState(DummyDefaultFoods);
+  const [cartData, setCartData] = useState(defaultCart);
 
-  const updateFoodDataHandler = (id, count) => {
-    const result = foodData.map((arrItem) => {
-      const newObj = { ...arrItem }; // copy object because object are passed by refrence and will change the original object if we modify it here
-      if (newObj.id === id) {
-        newObj.count += Number(count);
-        return newObj;
-      } else {
-        return newObj;
-      }
+  const updateFoodDataHandler = (id, mealsAmount) => {
+    const found = cartData.findIndex((arrItem) => {
+      return id === arrItem.id;
     });
-    //   //with every usestate we must set a new thing(arr,obj,bollean)
-    setFoodData(result);
+    if (found >= 0) {
+      setCartData([{ id: id, count: (mealsAmount += mealsAmount) }]);
+    } else {
+      setCartData([...cartData, { id: id, count: mealsAmount }]);
+    }
   };
-  // console.log(foodData);
+
+  console.log(cartData, "kkkk");
 
   const [isOpen, setIsOpen] = useState(false);
   const setCloseModalHandler = () => {
@@ -62,12 +60,13 @@ function App() {
   };
   return (
     <div>
-      <Header foodData={foodData} onOpen={setOpenModalHandler} />
+      <Header cartData={cartData} onOpen={setOpenModalHandler} />
       <WebDiscription />
       <MealsCard foodData={foodData} onAddFood={updateFoodDataHandler} />
       {/* {for showing the cart or not} */}
       {isOpen && (
         <CartItems
+          cartData={cartData}
           foodData={foodData}
           onClose={setCloseModalHandler}
           updateFoodDataHandler={updateFoodDataHandler}
@@ -76,5 +75,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
