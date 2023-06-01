@@ -40,13 +40,15 @@ function App() {
 
   const updateFoodDataHandler = (id, mealsAmount) => {
     const found = cartData.findIndex((arrItem) => {
-      return id === arrItem.id;
+      return id === arrItem.id; //
     });
-    if (found >= 0) {
-      setCartData([]);
-    } else {
-      setCartData([...cartData, { id: id, count: mealsAmount }]);
-    }
+    const newCartData = cartData.map((arrItem) => {
+      const newArr = [...cartData];
+      if (found >= 0) {
+      } else {
+        setCartData([...cartData, { id: id, count: mealsAmount }]);
+      }
+    });
   };
 
   console.log(cartData, "kkkk");
