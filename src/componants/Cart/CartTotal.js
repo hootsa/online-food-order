@@ -6,11 +6,10 @@ const CartTotal = (props) => {
  let sum =0;
  for(let i =0; i<props.foodData.length; i++){
   if(props.foodData.id === props.cartData.id){
-    
+    sum += Number(props.foodData.price)* Number(props.cartData.count)
   }
  }
-   }
- 
+}
     }
   
   const sumOfPrice = totalPrice();
