@@ -3,19 +3,18 @@ import "./CartTotal.css";
 
 const CartTotal = (props) => {
   const totalPrice = () => {
- let sum =0;
- for(let i =0; i<props.foodData.length; i++){
-  if(props.foodData.id === props.cartData.id){
-    sum += Number(props.foodData.price)* Number(props.cartData.count)
-  }
- }
-}
+    let sum = 0;
+    for (let i = 0; i < props.foodData.length; i++) {
+      if (props.foodData.id === props.cartData.id) {
+        sum += Number(props.foodData.price) * Number(props.cartData.count);
+      }
     }
-  
-  const sumOfPrice = totalPrice();
-  const orderHandler = () => {
-    console.log("...ordering");
+    return sum.toFixed(2);
   };
+};
+const sumOfPrice = totalPrice();
+const orderHandler = () => {
+  console.log("...ordering");
 
   return (
     <div>
