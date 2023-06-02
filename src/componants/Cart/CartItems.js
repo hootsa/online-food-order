@@ -38,7 +38,7 @@ const CartItems = (props) => {
         })}
         <CartTotal
           onClose={props.onClose}
-          foodData={props.foodData}
+          foodData={filterData}
           cartData={props.cartData}
         />
       </div>
