@@ -40,21 +40,29 @@ function App() {
 
   const updateFoodDataHandler = (id, mealsAmount) => {
     const found = cartData.findIndex((arrItem) => {
-      return id === arrItem.id; //
+      return id === arrItem.id;
     });
-    const newCartData = cartData.map((arrItem) => {
-      const newArr = [...arrItem];
+    console.log(found, "kkk");
+    if (found >= 0) {
+      const newCartData = cartData.map((arrItem) => {
+        const newArr = { ...arrItem };
+        console.log(newArr, "pppp");
+        if (found >= 0) {
+          arrItem.count += mealsAmount;
+          console.log(arrItem.count, "dddd");
+          return newArr;
+        } else {
+          return newArr;
+        }
+      });
 
-      if (found >= 0) {
-        newArr.count += Number(mealsAmount);
-        return newArr;
-      } else {
-        return { ...arrItem, id: id, count: mealsAmount };
-      }
-    });
-    console.log(newCartData, found, "kkkk");
-    setCartData(newCartData);
+      setCartData(newCartData);
+    } else {
+      setCartData([...cartData, { id: id, count: mealsAmount }]);
+    }
   };
+
+  console.log(cartData, "kkkk");
 
   const [isOpen, setIsOpen] = useState(false);
   const setCloseModalHandler = () => {
