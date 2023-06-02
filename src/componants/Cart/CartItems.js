@@ -25,6 +25,7 @@ const CartItems = (props) => {
           return (
             <CartItem
               key={cartItemObj.id}
+              id={cartItemObj.id}
               name={found.name}
               price={found.price}
               count={cartItemObj.count}
