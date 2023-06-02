@@ -3,6 +3,9 @@ import "./CartItems.css";
 import CartTotal from "./CartTotal";
 import CartItem from "./CartItem";
 const CartItems = (props) => {
+  const filterData = props.cartData.filter((arrItem) => {
+    return Number(arrItem.count > 0);
+  });
   // for showing the cart or not. when we return null it's like false and nothing is render
   // if (props.onOpen) {
   //   return null;
@@ -12,7 +15,7 @@ const CartItems = (props) => {
     // <div className = {props.isopen ? "card-cart":"empty"}
     <div className={"card-back"}>
       <div className={"card-cart"}>
-        {props.cartData.map((cartItemObj) => {
+        {props.filterData.map((cartItemObj) => {
           const found = props.foodData.find((arrItem) => {
             return arrItem.id === cartItemObj.id;
             // if (arrItem.id === cartItemObj.id) {
