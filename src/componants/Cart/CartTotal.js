@@ -3,14 +3,16 @@ import "./CartTotal.css";
 
 const CartTotal = (props) => {
   const totalPrice = () => {
-   const found = props.cartData.find(()=>{
-    return 
-   })
-    if(props.cartData.id === props.foodData.id){
-
+ let sum =0;
+ for(let i =0; i<props.foodData.length; i++){
+  if(props.foodData.id === props.cartData.id){
+    
+  }
+ }
+   }
+ 
     }
-    }
-  };
+  
   const sumOfPrice = totalPrice();
   const orderHandler = () => {
     console.log("...ordering");
