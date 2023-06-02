@@ -2,11 +2,12 @@ import React from "react";
 import "./CartItem.css";
 const CartItem = (props) => {
   const removeOrderHandler = () => {
-    const currentId = props.id;
+    const currentId = props.key;
+    console.log(currentId);
     props.updateFoodDataHandler(currentId, -1);
   };
   const addOrderHandler = () => {
-    const currentId = props.id;
+    const currentId = props.key;
     props.updateFoodDataHandler(currentId, 1);
   };
   return (

@@ -42,14 +42,11 @@ function App() {
     const found = cartData.findIndex((arrItem) => {
       return id === arrItem.id;
     });
-    console.log(found, "kkk");
     if (found >= 0) {
       const newCartData = cartData.map((arrItem) => {
         const newArr = { ...arrItem };
-        console.log(newArr, "pppp");
         if (found >= 0) {
-          arrItem.count += mealsAmount;
-          console.log(arrItem.count, "dddd");
+          newArr.count += Number(mealsAmount);
           return newArr;
         } else {
           return newArr;
@@ -58,11 +55,9 @@ function App() {
 
       setCartData(newCartData);
     } else {
-      setCartData([...cartData, { id: id, count: mealsAmount }]);
+      setCartData([...cartData, { id: id, count: Number(mealsAmount) }]);
     }
   };
-
-  console.log(cartData, "kkkk");
 
   const [isOpen, setIsOpen] = useState(false);
   const setCloseModalHandler = () => {

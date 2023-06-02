@@ -21,9 +21,10 @@ const CartItems = (props) => {
             //   return false;
             // }
           });
+          console.log(cartItemObj.id, "bbb");
           return (
             <CartItem
-              key={found.id}
+              key={cartItemObj.id}
               name={found.name}
               price={found.price}
               count={cartItemObj.count}
