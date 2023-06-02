@@ -2,16 +2,7 @@ import React from "react";
 import "./CartTotal.css";
 
 const CartTotal = (props) => {
-  const totalPrice = () => {
-    let sum = 0;
-    for (let i = 0; i < props.foodData.length; i++) {
-      const total =
-        Number(props.foodData[i].price) * Number(props.foodData[i].count);
-
-      sum += total;
-    }
-    return sum.toFixed(2);
-  };
+  const totalPrice = () => {};
   const sumOfPrice = totalPrice();
   const orderHandler = () => {
     console.log("...ordering");

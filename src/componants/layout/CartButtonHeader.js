@@ -7,7 +7,9 @@ const CartButtonHeader = (props) => {
     for (let i = 0; i < props.cartData.length; i++) {
       const arrItem = props.cartData[i];
       const count = arrItem.count;
-      sum += Number(count);
+      if (Number(count > 0)) {
+        sum += Number(count);
+      }
     }
     return sum;
   };

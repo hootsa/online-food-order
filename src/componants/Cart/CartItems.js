@@ -15,7 +15,7 @@ const CartItems = (props) => {
     // <div className = {props.isopen ? "card-cart":"empty"}
     <div className={"card-back"}>
       <div className={"card-cart"}>
-        {props.filterData.map((cartItemObj) => {
+        {filterData.map((cartItemObj) => {
           const found = props.foodData.find((arrItem) => {
             return arrItem.id === cartItemObj.id;
             // if (arrItem.id === cartItemObj.id) {
@@ -36,11 +36,11 @@ const CartItems = (props) => {
             />
           );
         })}
-        {/* <CartTotal
+        <CartTotal
           onClose={props.onClose}
           foodData={props.foodData}
           cartData={props.cartData}
-        /> */}
+        />
       </div>
     </div>
   );
