@@ -2,7 +2,15 @@ import React from "react";
 import "./CartTotal.css";
 
 const CartTotal = (props) => {
-  const totalPrice = () => {};
+  const totalPrice = () => {
+   const found = props.cartData.find(()=>{
+    return 
+   })
+    if(props.cartData.id === props.foodData.id){
+
+    }
+    }
+  };
   const sumOfPrice = totalPrice();
   const orderHandler = () => {
     console.log("...ordering");
