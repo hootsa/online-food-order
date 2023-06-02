@@ -7,16 +7,17 @@ const CartTotal = (props) => {
     const found = props.cartData.find((arrItem) => {
       return arrItem.id;
     });
-    console.log(found.id, "llll");
+    console.log(found.id, typeof found.count, "llll");
     for (let i = 0; i < props.foodData.length; i++) {
-      if (props.foodData.id === found.id) {
-        Number(props.foodData.price) * Number(props.cartData.count);
+      if (props.foodData[i].id === found.id) {
+        sum += Number(props.foodData[i].price) * found.count;
+        console.log(props.foodData[i].price, "price");
       }
-      sum += total;
+      console.log(sum, "totall");
     }
     return sum.toFixed(2);
   };
-
+  console.log(totalPrice(), "totalpricefu");
   const sumOfPrice = totalPrice();
   const orderHandler = () => {
     console.log("...ordering");
