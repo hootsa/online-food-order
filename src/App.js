@@ -72,11 +72,18 @@ function App() {
         });
         setCartData(filterData);
       } else {
-        // issueeeeee
         const newCartData = cartData.map((arrItem) => {
           const newArr = { ...arrItem };
-          newArr.count += Number(mealsAmount);
-          return newArr;
+          if (newArr.id === id) {
+            newArr.count += Number(mealsAmount);
+            return newArr;
+          } else {
+            return newArr;
+          }
+          // return {
+          //   ...arrItem,
+          //   count: newArr.id === id ? arrItem.count +  Number(mealsAmount) : arrItem.count
+          // }
         });
         console.log(cartData, "mmmm");
         setCartData(newCartData);
