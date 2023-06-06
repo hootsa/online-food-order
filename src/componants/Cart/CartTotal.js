@@ -4,20 +4,21 @@ import "./CartTotal.css";
 const CartTotal = (props) => {
   const totalPrice = () => {
     let sum = 0;
-    const found = props.cartData.find((arrItem) => {
-      return arrItem.id;
-    });
-    console.log(found.id, typeof found.count, "llll");
-    for (let i = 0; i < props.foodData.length; i++) {
-      if (props.foodData[i].id === found.id) {
-        sum += Number(props.foodData[i].price) * found.count;
-        console.log(props.foodData[i].price, "price");
-      }
-      console.log(sum, "totall");
+
+    console.log(props.cartData, props.foodData, "XXXXXXX");
+    for (let i = 0; i < props.cartData.length; i++) {
+      const cartDataItem = props.cartData[i];
+
+      const found = props.foodData.find((foodDataItem) => {
+        return foodDataItem.id === cartDataItem.id;
+      });
+
+      const total = cartDataItem.count * found.price;
+      sum += total;
     }
     return sum.toFixed(2);
   };
-  console.log(totalPrice(), "totalpricefu");
+
   const sumOfPrice = totalPrice();
   const orderHandler = () => {
     console.log("...ordering");

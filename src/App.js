@@ -38,27 +38,54 @@ function App() {
   const [foodData, setFoodData] = useState(DummyDefaultFoods);
   const [cartData, setCartData] = useState(defaultCart);
 
+  /*
+    cartData = [
+      {id: 555,  count: 2},
+      {id: 666,  count: 1},
+    ]
+ 
+    updateFoodDataHandler(666, -1);
+
+    cartData = [
+      {id: 555,  count: 5},
+    ]
+
+  
+  */
   const updateFoodDataHandler = (id, mealsAmount) => {
-    const found = cartData.findIndex((arrItem) => {
+    // const foundIdx = cartData.findIndex((arrItem) => {
+    //   return id === arrItem.id;
+    // });
+    // const foundCount = cartData.find((arrItem) => {
+    //   return arrItem.count > 0;
+    // });
+    const foundItem = cartData.find((arrItem) => {
       return id === arrItem.id;
     });
-    if (found >= 0) {
-      const newCartData = cartData.map((arrItem) => {
-        const newArr = { ...arrItem };
-        if (found >= 0) {
+
+    // console.log(foundCount, typeof foundCount, typeof mealsAmount);
+    if (!!foundItem) {
+      const sum = foundItem.count + mealsAmount;
+      if (sum <= 0) {
+        const filterData = cartData.filter((arrItem) => {
+          return id !== arrItem.id;
+        });
+        setCartData(filterData);
+      } else {
+        // issueeeeee
+        const newCartData = cartData.map((arrItem) => {
+          const newArr = { ...arrItem };
           newArr.count += Number(mealsAmount);
           return newArr;
-        } else {
-          return newArr;
-        }
-      });
-
-      setCartData(newCartData);
+        });
+        console.log(cartData, "mmmm");
+        setCartData(newCartData);
+      }
     } else {
       setCartData([...cartData, { id: id, count: Number(mealsAmount) }]);
     }
   };
-
+  console.log(cartData, "hhhh");
   const [isOpen, setIsOpen] = useState(false);
   const setCloseModalHandler = () => {
     setIsOpen(false);
