@@ -8,30 +8,36 @@ const CartItems = (props) => {
   //   return null;
   // }
 
-  const filteredData = props.foodData.filter((foodObj) => {
-    return Number(foodObj.count) > 0;
-    // OR
-    // if (Number(foodObj.count) > 0) {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-  });
-
   return (
     // <div className = {props.isopen ? "card-cart":"empty"}
     <div className={"card-back"}>
       <div className={"card-cart"}>
-        {filteredData.map((food) => {
+        {props.cartData.map((cartItemObj) => {
+          const found = props.foodData.find((arrItem) => {
+            return arrItem.id === cartItemObj.id;
+            // if (arrItem.id === cartItemObj.id) {
+            //   return true;
+            // } else {
+            //   return false;
+            // }
+          });
+          console.log(cartItemObj.id, "bbb");
           return (
             <CartItem
-              key={food.id}
-              food={food}
+              key={cartItemObj.id}
+              id={cartItemObj.id}
+              name={found.name}
+              price={found.price}
+              count={cartItemObj.count}
               updateFoodDataHandler={props.updateFoodDataHandler}
             />
           );
         })}
-        <CartTotal onClose={props.onClose} foodData={filteredData} />
+        <CartTotal
+          onClose={props.onClose}
+          foodData={props.foodData}
+          cartData={props.cartData}
+        />
       </div>
     </div>
   );

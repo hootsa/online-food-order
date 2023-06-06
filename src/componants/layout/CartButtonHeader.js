@@ -4,10 +4,12 @@ import "./CartButtonHeader.css";
 const CartButtonHeader = (props) => {
   const totalCounts = () => {
     let sum = 0;
-    for (let i = 0; i < props.foodData.length; i++) {
-      const arrItem = props.foodData[i];
+    for (let i = 0; i < props.cartData.length; i++) {
+      const arrItem = props.cartData[i];
       const count = arrItem.count;
-      sum += Number(count);
+      if (Number(count > 0)) {
+        sum += Number(count);
+      }
     }
     return sum;
   };
