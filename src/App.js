@@ -30,45 +30,24 @@ const DummyDefaultFoods = [
     id: Math.random().toString(),
   },
 ];
-const defaultCart = [
-  // { id: DummyDefaultFoods[0].id, count: 7 },
-];
+const defaultCart = [];
 
 function App() {
   const [foodData, setFoodData] = useState(DummyDefaultFoods);
   const [cartData, setCartData] = useState(defaultCart);
 
-  /*
-    cartData = [
-      {id: 555,  count: 2},
-      {id: 666,  count: 1},
-    ]
- 
-    updateFoodDataHandler(666, -1);
-
-    cartData = [
-      {id: 555,  count: 5},
-    ]
-
-  
-  */
   const updateFoodDataHandler = (id, mealsAmount) => {
-    // const foundIdx = cartData.findIndex((arrItem) => {
-    //   return id === arrItem.id;
-    // });
-    // const foundCount = cartData.find((arrItem) => {
-    //   return arrItem.count > 0;
-    // });
     const foundItem = cartData.find((arrItem) => {
       return id === arrItem.id;
     });
 
     // console.log(foundCount, typeof foundCount, typeof mealsAmount);
     if (!!foundItem) {
+      //!! if this is true or false it didn't change it.just make it boolean
       const sum = foundItem.count + mealsAmount;
       if (sum <= 0) {
         const filterData = cartData.filter((arrItem) => {
-          return id !== arrItem.id;
+          return id !== arrItem.id; // for removing the obj that has a 0 count
         });
         setCartData(filterData);
       } else {
@@ -85,14 +64,13 @@ function App() {
           //   count: newArr.id === id ? arrItem.count +  Number(mealsAmount) : arrItem.count
           // }
         });
-        console.log(cartData, "mmmm");
         setCartData(newCartData);
       }
     } else {
       setCartData([...cartData, { id: id, count: Number(mealsAmount) }]);
     }
   };
-  console.log(cartData, "hhhh");
+
   const [isOpen, setIsOpen] = useState(false);
   const setCloseModalHandler = () => {
     setIsOpen(false);

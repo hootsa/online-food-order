@@ -9,7 +9,6 @@ const Header = (props) => {
       <CartButtonHeader
         cartData={props.cartData}
         onOpen={props.onOpen}
-        onClose={props.onClose}
       ></CartButtonHeader>
     </header>
   );

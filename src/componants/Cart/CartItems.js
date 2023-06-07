@@ -21,7 +21,6 @@ const CartItems = (props) => {
             //   return false;
             // }
           });
-          console.log(cartItemObj.id, "bbb");
           return (
             <CartItem
               key={cartItemObj.id}

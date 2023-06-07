@@ -3,6 +3,7 @@ import "./CartButtonHeader.css";
 
 const CartButtonHeader = (props) => {
   const totalCounts = () => {
+    // for showing total order number
     let sum = 0;
     for (let i = 0; i < props.cartData.length; i++) {
       const arrItem = props.cartData[i];
