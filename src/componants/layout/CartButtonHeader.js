@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CartButtonHeader.css";
+import { FootDataContext } from "../../App";
 
 const CartButtonHeader = (props) => {
+  const contextData = useContext(FootDataContext);
+  const foodData = contextData.foodData;
+  const openModal = contextData.onOpen;
+
   const totalCounts = () => {
     let sum = 0;
-    for (let i = 0; i < props.foodData.length; i++) {
-      const arrItem = props.foodData[i];
+    for (let i = 0; i < foodData.length; i++) {
+      const arrItem = foodData[i];
       const count = arrItem.count;
       sum += Number(count);
     }
@@ -14,7 +19,7 @@ const CartButtonHeader = (props) => {
   const total = totalCounts();
 
   return (
-    <button className="cart-button" onClick={props.onOpen}>
+    <button className="cart-button" onClick={openModal}>
       <span> Your Cart</span>
       <span className="cart-span">{total}</span>
     </button>

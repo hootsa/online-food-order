@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CartItem.css";
+import { FootDataContext } from "../../App";
+
 const CartItem = (props) => {
+  const DataContext = useContext(FootDataContext);
+  const updateFood = DataContext.updateFoodDataHandler;
   const removeOrderHandler = () => {
     const currentId = props.food.id;
-    props.updateFoodDataHandler(currentId, -1);
+    updateFood(currentId, -1);
   };
   const addOrderHandler = () => {
     const currentId = props.food.id;
-    props.updateFoodDataHandler(currentId, 1);
+    updateFood(currentId, 1);
   };
   return (
     <div className="cart-item">

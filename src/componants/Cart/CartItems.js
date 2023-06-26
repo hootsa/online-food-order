@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./CartItems.css";
 import CartTotal from "./CartTotal";
 import CartItem from "./CartItem";
+import { FootDataContext } from "../../App";
+
 const CartItems = (props) => {
   // for showing the cart or not. when we return null it's like false and nothing is render
   // if (props.onOpen) {
   //   return null;
   // }
-
-  const filteredData = props.foodData.filter((foodObj) => {
+  const DataContext = useContext(FootDataContext);
+  const foodDataContext = DataContext.foodData;
+  const filteredData = foodDataContext.filter((foodObj) => {
     return Number(foodObj.count) > 0;
     // OR
     // if (Number(foodObj.count) > 0) {
@@ -31,7 +34,7 @@ const CartItems = (props) => {
             />
           );
         })}
-        <CartTotal onClose={props.onClose} foodData={filteredData} />
+        <CartTotal foodData={filteredData} />
       </div>
     </div>
   );

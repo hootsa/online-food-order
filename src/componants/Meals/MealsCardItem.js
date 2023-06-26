@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./MealsCardItem.css";
+import { FootDataContext } from "../../App";
 
 const MealsCardItem = (props) => {
+  const foodDataContext = useContext(FootDataContext);
+  const updateData = foodDataContext.updateFoodDataHandler;
   const [mealsAmount, setMealsAmount] = useState("");
 
   const changeInputHandler = (event) => {
@@ -9,7 +12,7 @@ const MealsCardItem = (props) => {
   };
   const addButtonHandler = () => {
     const newId = props.meal.id;
-    props.onAddFood(newId, mealsAmount);
+    updateData(newId, mealsAmount);
   };
 
   return (

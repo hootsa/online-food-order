@@ -1,18 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./MealsCard.css";
 import MealsCardItem from "./MealsCardItem.js";
+import { FootDataContext } from "../../App";
 
-const MealsCard = (props) => {
+const MealsCard = () => {
+  const foodDataContext = useContext(FootDataContext);
+  const foodData = foodDataContext.foodData;
   return (
     <div className="card">
-      {props.foodData.map((meal) => {
-        return (
-          <MealsCardItem
-            meal={meal}
-            key={meal.id}
-            onAddFood={props.onAddFood}
-          />
-        );
+      {foodData.map((meal) => {
+        return <MealsCardItem meal={meal} key={meal.id} />;
       })}
     </div>
   );

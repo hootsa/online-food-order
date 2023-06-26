@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, createContext, useContext } from "react";
 import MealsCard from "./componants/Meals/MealsCard";
 import WebDiscription from "./componants/UI/WebDiscription";
 import Header from "./componants/layout/Header";
@@ -35,6 +35,8 @@ const DummyDefaultFoods = [
   },
 ];
 
+export const FootDataContext = createContext(null);
+
 function App() {
   const [foodData, setFoodData] = useState(DummyDefaultFoods);
 
@@ -61,19 +63,22 @@ function App() {
     setIsOpen(true);
   };
   return (
-    <div>
-      <Header foodData={foodData} onOpen={setOpenModalHandler} />
-      <WebDiscription />
-      <MealsCard foodData={foodData} onAddFood={updateFoodDataHandler} />
-      {/* {for showing the cart or not} */}
-      {isOpen && (
-        <CartItems
-          foodData={foodData}
-          onClose={setCloseModalHandler}
-          updateFoodDataHandler={updateFoodDataHandler}
-        />
-      )}
-    </div>
+    <FootDataContext.Provider
+      value={{
+        foodData: foodData,
+        updateFoodDataHandler: updateFoodDataHandler,
+        onOpen: setOpenModalHandler,
+        onClose: setCloseModalHandler,
+      }}
+    >
+      <div>
+        <Header />
+        <WebDiscription />
+        <MealsCard />
+        {/* {for showing the cart or not} */}
+        {isOpen && <CartItems />}
+      </div>
+    </FootDataContext.Provider>
   );
 }
 

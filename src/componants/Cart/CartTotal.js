@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./CartTotal.css";
+import { FootDataContext } from "../../App";
 
 const CartTotal = (props) => {
+  const dataContext = useContext(FootDataContext);
+  const closeModalContext = dataContext.onClose;
+
   const totalPrice = () => {
     let sum = 0;
     for (let i = 0; i < props.foodData.length; i++) {
@@ -29,7 +33,7 @@ const CartTotal = (props) => {
       )}
 
       <div className={"action"}>
-        <button className={"actions-button"} onClick={props.onClose}>
+        <button className={"actions-button"} onClick={closeModalContext}>
           Close
         </button>
         {sumOfPrice > 0 && (
